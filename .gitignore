@@ -1,0 +1,95 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environment
+venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+im/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+
+# OS
+.DS_Store
+Thumbs.db
+ehthumbs.db
+Icon?
+.directory
+*.nfs
+*~
+.#*
+*#
+*.tmp
+*.bak
+*.orig
+*.rej
+
+# Logs
+*.log
+logs/
+*.out
+
+# Testing
+.pytest_cache/
+.coverage
+htmlcov/
+.tox/
+nox/
+coverage.xml
+conftest_*.py
+
+# Local configuration
+config.local
+*.local
+.env
+.envrc
+.env.local
+
+# System files
+.DS_Store
+desktop.ini
+
+# Deployment
+*.tar.gz
+*.zip
+deploy.log
+*.pid
+
+# Custom for this IM project
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite
+*.sqlite3
+*.session
+*.lock
+*.tmp
+*.temp
