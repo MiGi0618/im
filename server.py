@@ -15,6 +15,27 @@ except ImportError:
 # 键：用户ID（字符串），值：WebSocket连接对象
 online_users = {}
 
+# Broadcast the current online user list to all connected clients.
+async def broadcast_user_list():
+    if not online_users:
+        return
+
+    message = json.dumps({
+        "type": "user_list",
+        "users": list(online_users.keys())
+    })
+
+    dead_users = []
+    for user, conn in list(online_users.items()):
+        try:
+            await conn.send(message)
+        except Exception:
+            dead_users.append(user)
+
+    for user in dead_users:
+        online_users.pop(user, None)
+
+
 # 异步函数：处理每个客户端连接
 # 参数ws：WebSocket连接对象，类似C++的socket连接
 async def handler(ws):
@@ -42,6 +63,7 @@ async def handler(ws):
                     "type": "login_success",
                     "message": f"欢迎 {user_id}，您已成功登录"
                 }))
+                await broadcast_user_list()
 
             # 2. 聊天消息转发：将消息转发给指定用户
             elif data["type"] == "chat":
@@ -78,6 +100,7 @@ async def handler(ws):
             online_users.pop(user_id, None)
             print(f"{user_id} 下线")  # 打印用户下线信息
             print_online_users()  # 打印当前在线用户列表
+            await broadcast_user_list()
 
 # 辅助函数：打印当前在线用户列表
 def print_online_users():
