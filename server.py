@@ -52,6 +52,7 @@ async def handler(ws):
                 if to_user in online_users:
                     # 构造要转发的消息内容
                     message_to_send = {
+                        "type": "chat",
                         "from": user_id,           # 消息发送者
                         "content": data["content"] # 消息内容
                     }
